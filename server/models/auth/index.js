@@ -15,18 +15,6 @@ function userLogin({email,password}){
     })
 }
 
-function userEmailCheck(email){
-    const sql = 'select * from users where email=?'
-    return new Promise((resolve, reject)=>{
-        db.query(sql,[email],(err, res)=>{
-            if(err){
-                reject(err)
-            }else{
-                resolve(res)
-            }
-        })
-    })
-}
 
 function UserRegister({name,email,address,description,password}){
     const sql = 'insert into users (name,email,address,description,password) values (?,?,?,?,?)'
@@ -43,6 +31,5 @@ function UserRegister({name,email,address,description,password}){
 
 module.exports = {
     userLogin,
-    userEmailCheck,
     UserRegister
 }

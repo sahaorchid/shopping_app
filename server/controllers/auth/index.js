@@ -1,4 +1,5 @@
-const { userLogin,userEmailCheck,UserRegister } = require('../../models/auth/index')
+const { userLogin,UserRegister } = require('../../models/auth/index')
+const { userEmailCheck } = require('../../utils')
 async function checkUserLogin(req,res){
     try{
         const { email, password } = req.body
