@@ -1,4 +1,4 @@
-const { addOrder,lastOrder,addOrderProducts,deleteOrder } = require('../../models/orders/index')
+const { addOrder,lastOrder,addOrderProducts,deleteOrder,getOrder } = require('../../models/orders/index')
 
 async function addNewOrder(req,res){
     try{
@@ -27,7 +27,19 @@ async function deleteUserOrder(req,res){
     }
 }
 
+async function getOrderByUserId(req,res){
+    try{
+        const user_id = req.params.user_id
+        const result = await getOrder(user_id)
+        res.json(result)
+    }catch(err){
+        console.log(err)
+        res.status(500).json({msg:"error occured"})
+    }
+}
+
 module.exports = {
     addNewOrder,
-    deleteUserOrder
+    deleteUserOrder,
+    getOrderByUserId
 }

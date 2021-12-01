@@ -63,9 +63,23 @@ function deleteOrder(id){
     })
 }
 
+function getOrder(user_id){
+    return new Promise((resolve, reject) =>{
+        const sql = 'select * from orders inner join order_products on orders.id = order_products.order_id where orders.user_id=?'
+        db.query(sql,[user_id],(err, res) =>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(res)
+            }
+        })
+    })
+}
+
 module.exports = {
     addOrder,
     lastOrder,
     addOrderProducts,
-    deleteOrder
+    deleteOrder,
+    getOrder
 }
