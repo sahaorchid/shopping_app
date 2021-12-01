@@ -2,10 +2,11 @@ const { userLogin,UserRegister } = require('../../models/auth/index')
 const { userEmailCheck } = require('../../utils')
 async function checkUserLogin(req,res){
     try{
+        console.log("here")
         const { email, password } = req.body
         const result = await userLogin({email, password})
         if(result.length === 1){
-            res.json({msg:"success"})
+            res.json({msg:"success",user_data:result})
         }else{
             const result = await userEmailCheck(email)
             if(result.length === 1){
