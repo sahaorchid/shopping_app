@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-      
+        <span>{{error_msg}}</span>
         <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
 
             <!-- Icon -->
             <div class="fadeIn first">
-            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
@@ -36,20 +35,20 @@ import {store} from '../../store'
 
 export default {
   name: 'Login',
-  components: {
-    
-  },
+
   computed:{
   },
   data(){
       return{
           email: '',
-          password: ''
+          password: '',
+          error_msg : ''
+
       }
   },
   methods: {
       value(data){
-          (this.$store.state.userData).push(data)
+          (this.$store.state.userData).push(data[0])
       },
 
       loginSubmit(e){
@@ -58,9 +57,13 @@ export default {
               email:this.email,
               password:this.password
           }).then((res)=>{
-              this.$store.state.userData.splice(0,(this.$store.state.userData).length)
-              this.value(res.data.user_data)
-              console.log((this.$store.state.userData))
+            if(res.data.msg === 'success'){
+                this.$store.state.userData.splice(0,(this.$store.state.userData).length)
+                this.value(res.data.user_data)
+                this.$router.push('/home')
+            }else{
+              this.error_msg = (res.data.msg)
+            }
           }).catch(err=>{console.log(err)})  
       }
   }

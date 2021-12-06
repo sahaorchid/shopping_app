@@ -7,7 +7,6 @@
 
             <!-- Icon -->
             <div class="fadeIn first">
-            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
@@ -59,7 +58,7 @@ export default {
                 description : this.description,
                 password : this.password
           }).then((res)=>{
-                this.$router.push('Login');
+                this.$router.push('/');
           }).catch(err=>{console.log(err)})  
       }
   }
