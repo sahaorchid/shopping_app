@@ -42,8 +42,9 @@ export default {
       }
   },
   created(){
-      if(this.$store.state.userData.length >=1){
-        this.user_id = (this.$store.state.userData[0].id)
+      console.log("jkj")
+      if(Object.keys(this.$store.state.userData).length != 0){
+        this.user_id = (this.$store.state.userData.id)
         console.log(this.user_id)
         axios.get(`http://localhost:3000/user-profile/details/${this.user_id}`)
         .then(res=>{

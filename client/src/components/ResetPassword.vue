@@ -25,8 +25,9 @@ export default {
   },
   methods :{
       resetPassword(e){
-        e.preventDefault();  
-        this.id = this.$store.state.userData[0].id
+        e.preventDefault(); 
+        console.log(this.$store.state.userData)  
+        this.id = this.$store.state.userData.id
         console.log(this.id)  
         if(this.id){
             axios.put('http://localhost:3000/user-profile/reset-password',{

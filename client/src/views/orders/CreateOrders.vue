@@ -38,9 +38,9 @@ export default {
       }
   },
   created(){
-      this.address = this.$store.state.userData[0].address
-      this.description = this.$store.state.userData[0].description
-      this.user_id = (this.$store.state.userData[0].id)
+      this.address = this.$store.state.userData.address
+      this.description = this.$store.state.userData.description
+      this.user_id = (this.$store.state.userData.id)
       this.getAllCart(this.user_id)
       console.log((this.$store.state.userData))
   },
@@ -77,13 +77,14 @@ export default {
           })
       },
       orderPlaced(){
-            axios.put('http://localhost:3000/orders',{
+            axios.post('http://localhost:3000/orders',{
                 user_id : this.user_id,
-                product_id : this.placed_items,
+                products : this.placed_items,
                 address: this.address,
                 grand_total:this.grand_total,
             }).then((res)=>{
                 this.orders = false
+                this.$router.push('/home')
             }).catch(err=>{console.log(err)})
 
       }

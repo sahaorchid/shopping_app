@@ -30,7 +30,7 @@ export default {
       }
   },
   created(){
-      this.user_id = (this.$store.state.userData[0].id)
+      this.user_id = (this.$store.state.userData.id)
       this.getAllCart(this.user_id)
        
   },

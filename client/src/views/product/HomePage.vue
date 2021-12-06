@@ -62,7 +62,7 @@ export default {
           this.cart_product.push({id:this.products[index].id,quantity:this.quantity});
         }
         this.isExist = false
-        this.user_id = (this.$store.state.userData[0].id)
+        this.user_id = (this.$store.state.userData.id)
         this.product_id = parseInt(this.products[index].id)
         axios.post(`http://localhost:3000/cart/${this.user_id}`,{
             product_id : this.product_id,

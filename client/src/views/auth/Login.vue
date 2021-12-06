@@ -48,7 +48,8 @@ export default {
   },
   methods: {
       value(data){
-          (this.$store.state.userData).push(data[0])
+          (this.$store.state.userData) = (data[0])
+          console.log(this.$store.state.userData)
       },
 
       loginSubmit(e){
@@ -58,7 +59,6 @@ export default {
               password:this.password
           }).then((res)=>{
             if(res.data.msg === 'success'){
-                this.$store.state.userData.splice(0,(this.$store.state.userData).length)
                 this.value(res.data.user_data)
                 this.$router.push('/home')
             }else{

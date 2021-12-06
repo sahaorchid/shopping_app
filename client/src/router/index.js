@@ -6,6 +6,7 @@ import addProduct from '../views/product/addProduct.vue'
 import userDetails from '../views/user/userDetails.vue'
 import DeleteProduct from '../views/product/DeleteProduct.vue'
 import createOrders from '../views/orders/CreateOrders.vue'
+import store from '../store/index'
 
 const routes = [
   {
@@ -21,27 +22,32 @@ const routes = [
   {
     path: '/home',      
     name: 'HomePage',
-    component: HomePage
+    component: HomePage,
+    meta:{requiresAuth: true}
   },
   {
     path: '/addproduct',
     name: 'addProduct',
-    component: addProduct
+    component: addProduct,
+    meta:{requiresAuth: true}
   },
   {
     path: '/deleteproduct',
     name: 'DeleteProduct',
-    component: DeleteProduct
+    component: DeleteProduct,
+    meta:{requiresAuth: true}
   },
   {
   path: '/user',
   name: 'userDetails',      
-  component: userDetails
+  component: userDetails,
+  meta:{requiresAuth: true}
   },
   {
     path: '/createorder',
     name: 'createOrders',      
-    component: createOrders
+    component: createOrders,
+    meta:{requiresAuth: true}
     },
   {
     path: '/about',
@@ -56,6 +62,19 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to,from,next) =>{
+  console.log(store.state.userData)
+  if(to.meta.requiresAuth){
+    if(Object.keys(store.state.userData).length == 0){
+      next('/')
+    }else{
+      next()
+    }
+    }else{
+    next()
+  }
 })
 
 export default router
