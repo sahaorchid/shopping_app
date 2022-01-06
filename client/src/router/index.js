@@ -6,6 +6,7 @@ import addProduct from '../views/product/addProduct.vue'
 import userDetails from '../views/user/userDetails.vue'
 import DeleteProduct from '../views/product/DeleteProduct.vue'
 import createOrders from '../views/orders/CreateOrders.vue'
+import Contact from '../views/contact/Contact.vue'
 import store from '../store/index'
 
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact
   },
   {
     path: '/signup',
